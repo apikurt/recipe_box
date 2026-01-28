@@ -45,7 +45,7 @@ function displayRecipe(recipe) {
     <h2 class="recipe-title">${recipe.strMeal}</h2>
     <div class="recipe-buttons">
       <button id="save-recipe-button" class="primary">${saveButtonText}</button>
-      <button class="secondary add-to-planner-button" data-recipe-id="${recipe.idMeal}" ${isPlanned ? "disabled" : ""}>${plannedButtonText}</button>
+      <button class="warning add-to-planner-button" data-recipe-id="${recipe.idMeal}" ${isPlanned ? "disabled" : ""}>${plannedButtonText}</button>
     </div>
     </section>
     ${recipe.strTags ? `<span class="recipe-tags">${recipe.strTags.split(",").join(", ")}</span>` : ""}

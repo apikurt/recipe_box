@@ -36,6 +36,7 @@ caption > span {
 th, td {
     border: 1px solid var(--primary-color-hover);
     overflow-wrap: anywhere;
+    padding: 5px;
 }
 
 td:first-child {
