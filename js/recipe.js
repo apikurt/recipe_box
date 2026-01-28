@@ -32,7 +32,12 @@ function displayRecipe(recipe) {
   }
 
   const isSaved = isRecipeSaved(recipe.idMeal);
+  const isPlanned = isRecipePlanned(recipe.idMeal);
   const saveButtonText = isSaved ? "Unsave Recipe" : "Save Recipe";
+  const plannedButtonText = isPlanned ? "Planned" : "Add to Planner";
+  const imgUrl = recipe.strMealThumb
+    ? recipe.strMealThumb
+    : "/images/recipe_placeholder.png";
   recipeContainer.insertAdjacentHTML(
     "afterbegin",
     `
@@ -40,12 +45,12 @@ function displayRecipe(recipe) {
     <h2 class="recipe-title">${recipe.strMeal}</h2>
     <div class="recipe-buttons">
       <button id="save-recipe-button" class="primary">${saveButtonText}</button>
-      <button id="add-to-planner-button" class="secondary">Add to Planner</button>
+      <button class="secondary add-to-planner-button" data-recipe-id="${recipe.idMeal}" ${isPlanned ? "disabled" : ""}>${plannedButtonText}</button>
     </div>
     </section>
     ${recipe.strTags ? `<span class="recipe-tags">${recipe.strTags.split(",").join(", ")}</span>` : ""}
     <section class="recipe-mid-section">
-      <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" class="recipe-image" />
+      <img src="${imgUrl}" alt="${recipe.strMeal}" class="recipe-image" />
       <div class="ingredients-section">
       <h3 class="ingredients-header">Ingredients</h3>
       <ul class="ingredients-list">

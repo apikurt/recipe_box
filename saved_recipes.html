@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/saved_recipes.css" />
     <link rel="stylesheet" href="css/recipe_cards.css" />
+    <link rel="stylesheet" href="css/dialog.css">
     <script src="js/script.js" defer></script>
     <script src="js/saved_recipes.js" defer></script>
+    <script src="js/dialog.js" defer></script>
   </head>
   <body>
     <header>
@@ -34,39 +36,6 @@
       <section id="saved-recipes-container">
         <!-- Saved recipes will be dynamically inserted here -->
       </section>
-
-      <dialog id="planner-dialog">
-        <form method="dialog" class="dialog-form">
-          <h2 id="planner-dialog-title">Add to Planner</h2>
-          <label for="meal-type-select">Select Meal Type:</label>
-          <select id="meal-type-select" name="meal-type" required>
-            <option value="Breakfast">Breakfast</option>
-            <option value="Lunch">Lunch</option>
-            <option value="Dinner">Dinner</option>
-          </select>
-          <br>
-          <label for="day-select">Select Day:</label>
-          <select id="day-select" name="day-select" required>
-            <option value="Monday" selected>Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-            <option value="Sunday">Sunday</option>
-          </select>
-          <div class="dialog-buttons">
-            <button type="submit" class="primary">Add</button>
-            <button
-              type="button"
-              class="warning"
-              id="planner-dialog-cancel"
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      </dialog>
     </main>
 
     <footer>

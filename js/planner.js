@@ -43,7 +43,9 @@ days.forEach((day, dayIndex) => {
     if (meal) {
       td.innerHTML = `
         <div class="meal-info">
-          <span class="meal-name">${meal.strMeal}</span>
+          <span class="meal-name">
+          <a href="recipe.html?id=${meal.idMeal}">${meal.strMeal}</a>
+          </span>
         </div>
       `;
     } else {

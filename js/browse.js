@@ -54,10 +54,13 @@ function displayRecipes(recipes) {
   recipes.forEach((recipe) => {
     const isSaved = isRecipeSaved(recipe.idMeal);
     const buttonText = isSaved ? "Unsave Recipe" : "Save Recipe";
+    const imgUrl = recipe.strMealThumb
+      ? recipe.strMealThumb
+      : "/images/recipe_placeholder.png";
     cardsContainer.insertAdjacentHTML(
       "beforeend",
       `<div class="recipe-card">
-        <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" class="recipe-image" />
+        <img src="${imgUrl}" alt="${recipe.strMeal}" class="recipe-image" />
         <h3 class="recipe-title">${recipe.strMeal}</h3>
         <div class="recipe-buttons"> 
             <a href="recipe.html?id=${recipe.idMeal}" class="btn primary">View Recipe</a>

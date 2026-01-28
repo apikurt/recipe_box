@@ -1,0 +1,14 @@
+dialog form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.dialog-buttons button {
+  width: auto;
+}
