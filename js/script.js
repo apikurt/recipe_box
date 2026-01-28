@@ -25,7 +25,45 @@ function unsaveRecipe(recipeId) {
   alert("Recipe removed from saved recipes.");
 }
 
+function clearSavedRecipes() {
+  localStorage.removeItem("savedRecipes");
+  alert("All saved recipes cleared.");
+}
+
 function isRecipeSaved(recipeId) {
   const savedRecipes = getSavedRecipes();
   return savedRecipes.some((r) => r.idMeal === recipeId);
+}
+
+function getShoppingList() {
+  const shoppingList = localStorage.getItem("shoppingList");
+  return shoppingList ? JSON.parse(shoppingList) : [];
+}
+
+function addToShoppingList(ingredient) {
+  const shoppingList = getShoppingList();
+  if (!shoppingList.includes(ingredient)) {
+    shoppingList.push(ingredient);
+    localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+    alert(`${ingredient} added to shopping list.`);
+  } else {
+    alert(`${ingredient} is already in the shopping list.`);
+  }
+}
+
+function isInShoppingList(ingredient) {
+  const shoppingList = getShoppingList();
+  return shoppingList.includes(ingredient);
+}
+
+function clearShoppingList() {
+  localStorage.removeItem("shoppingList");
+  alert("Shopping list cleared.");
+}
+
+function removeFromShoppingList(ingredient) {
+  let shoppingList = getShoppingList();
+  shoppingList = shoppingList.filter((item) => item !== ingredient);
+  localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
+  alert(`${ingredient} removed from shopping list.`);
 }

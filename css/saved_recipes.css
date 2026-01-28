@@ -1,5 +1,7 @@
 main {
   padding: 20px;
+}
+#saved-recipes-container {
   display: flex;
   flex-wrap: wrap;
   max-width: 1000px;
@@ -8,4 +10,11 @@ main {
   gap: 20px;
   box-sizing: border-box;
   min-width: 0;
+}
+
+@media (max-width: 768px) {
+  #saved-recipes-title {
+    text-align: center;
+    width: 100%;
+  }
 }

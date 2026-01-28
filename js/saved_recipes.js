@@ -1,5 +1,9 @@
-const savedRecipesContainer = document.querySelector("main");
+const savedRecipesContainer = document.querySelector("#saved-recipes-container");
+
+const savedRecipesTitle = document.querySelector("#saved-recipes-title");
 const savedRecipes = getSavedRecipes();
+
+savedRecipesTitle.textContent = `Saved Recipes (${savedRecipes.length})`;
 
 if (savedRecipes.length === 0) {
   savedRecipesContainer.innerHTML = "<p>You have no saved recipes.</p>";

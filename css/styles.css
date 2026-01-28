@@ -121,6 +121,11 @@ button, .btn {
   border-radius: 5px;
   text-decoration: none;
 }
+
+.btn-small {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+}
 .primary {
   background-color: var(--primary-color);
 }

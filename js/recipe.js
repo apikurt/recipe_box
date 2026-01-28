@@ -49,7 +49,16 @@ function displayRecipe(recipe) {
       <div class="ingredients-section">
       <h3 class="ingredients-header">Ingredients</h3>
       <ul class="ingredients-list">
-        ${ingredients.map((ingredient) => `<li class="ingredient-item">${ingredient.measure} ${ingredient.ingredient}</li>`).join("")}
+        ${ingredients
+          .map((ingredient) => {
+            const isAdded = isInShoppingList(ingredient.ingredient);
+            if (isAdded) {
+              return `<li class="ingredient-item">${ingredient.measure} ${ingredient.ingredient} <button class="remove-from-shopping-list-button danger btn-small" data-ingredient="${ingredient.ingredient}" title="Remove from Shopping List">-</button></li>`;
+            }
+
+            return `<li class="ingredient-item">${ingredient.measure} ${ingredient.ingredient} <button class="add-to-shopping-list-button primary btn-small" data-ingredient="${ingredient.ingredient}" title="Add to Shopping List">+</button></li>`;
+          })
+          .join("")}
       </ul>
       </div>
     </section>
@@ -57,6 +66,36 @@ function displayRecipe(recipe) {
     <p class="instructions-text">${recipe.strInstructions}</p>
   `,
   );
+
+  document
+    .querySelectorAll(".add-to-shopping-list-button")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const ingredient = button.getAttribute("data-ingredient");
+        addToShoppingList(ingredient);
+        button.classList.remove("add-to-shopping-list-button");
+        button.classList.add("remove-from-shopping-list-button");
+        button.textContent = "-";
+        button.title = "Remove from Shopping List";
+        button.classList.remove("primary");
+        button.classList.add("danger");
+      });
+    });
+
+  document
+    .querySelectorAll(".remove-from-shopping-list-button")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        const ingredient = button.getAttribute("data-ingredient");
+        removeFromShoppingList(ingredient);
+        button.classList.remove("remove-from-shopping-list-button");
+        button.classList.add("add-to-shopping-list-button");
+        button.textContent = "+";
+        button.title = "Add to Shopping List";
+        button.classList.add("primary");
+        button.classList.remove("danger");
+      });
+    });
 
   if (recipe.strYoutube) {
     const youtubeUrl = new URL(recipe.strYoutube);

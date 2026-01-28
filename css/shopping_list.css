@@ -1,0 +1,71 @@
+main {
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+}
+
+.shopping-list-section {
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.shopping-list-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.shopping-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ingredient-text {
+    flex: 1;
+    min-width: 0; /* allow flex item to shrink for ellipsis */
+}
+
+
+/* Small screens */
+@media (max-width: 480px) {
+    main {
+        width: 100%;
+        max-width: 100%;
+    }
+    .shopping-list-section {
+        padding: 16px;
+    }
+    .shopping-list-top {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        text-align: center;
+    }
+    .shopping-list-item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+    .ingredient-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    /* Show a compact X while keeping accessible text */
+    .remove-button {
+        font-size: 0; /* visually hide text but keep for screen readers */
+        position: relative;
+        flex: none;
+    }
+    .remove-button::before {
+        content: 'x';
+        font-size: 16px;
+        line-height: 1;
+        display: inline-block;
+    }
+}
