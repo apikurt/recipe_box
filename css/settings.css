@@ -1,18 +1,25 @@
 main {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .button-container {
-    border-radius: 8px;
-    margin-bottom: 20px;
-    background-color: var(--background-secondary-color);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: var(--background-secondary-color);
 }
 
 .button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  main h1 {
+    width: 100%;
+    text-align: center;
+  }
 }
