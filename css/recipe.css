@@ -1,0 +1,134 @@
+#recipe-details {
+  padding: 20px;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  max-width: 768px;
+}
+.recipe-top-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.recipe-title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.recipe-buttons {
+  display: flex;
+  gap: 10px;
+}
+.recipe-tags {
+  margin-bottom: 15px;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--accent-color);
+}
+.recipe-mid-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
+  gap: 1rem;
+}
+.recipe-image {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+.ingredients-header {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+.ingredients-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+.instructions-header {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+.instructions-text {
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* Responsive: tablet */
+@media (max-width: 768px) {
+  #recipe-details {
+    max-width: 100%;
+    padding: 16px;
+  }
+
+  .recipe-top-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .recipe-title {
+    font-size: 1.75rem;
+  }
+
+  .recipe-buttons {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  .recipe-buttons button {
+    width: 100%;
+  }
+
+  .recipe-mid-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .recipe-image {
+    max-width: 100%;
+  }
+
+  .ingredients-header,
+  .instructions-header {
+    font-size: 1.25rem;
+  }
+}
+
+/* Responsive: mobile */
+@media (max-width: 480px) {
+  #recipe-details {
+    padding: 12px;
+  }
+
+  .recipe-title {
+    font-size: 1.5rem;
+  }
+
+  .recipe-tags {
+    font-size: 0.75rem;
+  }
+
+  .recipe-buttons {
+    gap: 8px;
+  }
+
+  .ingredients-header,
+  .instructions-header {
+    font-size: 1.125rem;
+  }
+
+  .ingredients-list {
+    padding-left: 16px;
+  }
+}

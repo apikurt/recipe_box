@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Box</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/browse.css" />
+    <link rel="stylesheet" href="css/recipe_cards.css" />
+    <script src="js/script.js" defer></script>
+    <script src="js/browse.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="index.html" class="logo-link">
+            <img src="images/logo.png" alt="Logo" />
+          </a>
+        </div>
+        <div class="navlinks">
+          <a href="index.html" class="navlink active">Browse</a>
+          <a href="saved_recipes.html" class="navlink">Saved Recipes</a>
+          <a href="planner.html" class="navlink">Weekly Planner</a>
+          <a href="shopping_list.html" class="navlink">Shopping List</a>
+          <a href="settings.html" class="navlink">Settings</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="browse-recipes">
+        <h1>Browse for Recipes</h1>
+        <form id="browse-recipes-form">
+          <input
+            type="search"
+            id="search"
+            name="search"
+            placeholder="Type a word..."
+            required
+            maxlength="100"
+          />
+          <button type="submit" class="primary">Search</button>
+          <div id="error-message" class="error v-hidden"></div>
+        </form>
+      </section>
+      <div id="card-container">
+        <!-- Recipe cards will be dynamically inserted here -->
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        &copy; <span id="footer-year"></span> Recipe Box. All rights reserved.
+      </p>
+      <p class="small">
+        Have a feedback? You can <a href="feedback.html">send it here</a>.
+      </p>
+    </footer>
+  </body>
+</html>

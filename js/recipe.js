@@ -1,0 +1,93 @@
+const recipeId = new URLSearchParams(window.location.search).get("id");
+const recipeContainer = document.querySelector("#recipe-details");
+
+if (recipeId) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const recipe = data.meals[0];
+      document.title = `${recipe.strMeal} - Recipe Box`;
+      displayRecipe(recipe);
+    })
+    .catch((error) => {
+      console.error("Error fetching recipe:", error);
+    });
+} else {
+  console.error("No recipe ID provided in URL.");
+}
+
+function displayRecipe(recipe) {
+  const ingredients = [];
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = recipe[`strIngredient${i}`];
+    const measure = recipe[`strMeasure${i}`];
+    if (ingredient) {
+      ingredients.push({
+        ingredient: ingredient,
+        measure: measure,
+      });
+    } else {
+      break;
+    }
+  }
+
+  const isSaved = isRecipeSaved(recipe.idMeal);
+  const saveButtonText = isSaved ? "Unsave Recipe" : "Save Recipe";
+  recipeContainer.insertAdjacentHTML(
+    "afterbegin",
+    `
+    <section class="recipe-top-section">
+    <h2 class="recipe-title">${recipe.strMeal}</h2>
+    <div class="recipe-buttons">
+      <button id="save-recipe-button" class="primary">${saveButtonText}</button>
+      <button id="add-to-planner-button" class="secondary">Add to Planner</button>
+    </div>
+    </section>
+    ${recipe.strTags ? `<span class="recipe-tags">${recipe.strTags.split(",").join(", ")}</span>` : ""}
+    <section class="recipe-mid-section">
+      <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" class="recipe-image" />
+      <div class="ingredients-section">
+      <h3 class="ingredients-header">Ingredients</h3>
+      <ul class="ingredients-list">
+        ${ingredients.map((ingredient) => `<li class="ingredient-item">${ingredient.measure} ${ingredient.ingredient}</li>`).join("")}
+      </ul>
+      </div>
+    </section>
+    <h3 class="instructions-header">Instructions</h3>
+    <p class="instructions-text">${recipe.strInstructions}</p>
+  `,
+  );
+
+  if (recipe.strYoutube) {
+    const youtubeUrl = new URL(recipe.strYoutube);
+    const videoId = youtubeUrl.searchParams.get("v");
+    recipeContainer.insertAdjacentHTML(
+      "beforeend",
+      `
+      <h3 class="video-header">Video Tutorial</h3>
+      <iframe
+        width="100%"
+        style="aspect-ratio: 16 / 9;"
+        src="https://www.youtube.com/embed/${videoId}"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    `,
+    );
+  }
+  document
+    .getElementById("save-recipe-button")
+    .addEventListener("click", () => {
+      if (isRecipeSaved(recipeId)) {
+        unsaveRecipe(recipeId);
+        document.getElementById("save-recipe-button").textContent =
+          "Save Recipe";
+      } else {
+        saveRecipe(recipe);
+        document.getElementById("save-recipe-button").textContent =
+          "Unsave Recipe";
+      }
+    });
+}
