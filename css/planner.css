@@ -1,0 +1,56 @@
+main {
+    padding: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border: 3px solid var(--primary-color);
+    border-collapse: collapse;
+
+}
+
+table > caption {
+    caption-side: top;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+caption > span {
+    font-size: 0.6em;
+    font-weight: normal;
+    margin-left: 10px;
+    color: var(--text-secondary-color);
+    font-style: italic;
+}
+
+th, td {
+    border: 1px solid var(--primary-color-hover);
+    overflow-wrap: anywhere;
+}
+
+td:first-child {
+    width: 30%;
+    text-align: left;
+}
+
+th:not(:first-child),
+td:not(:first-child) {
+    width: 23.333%; /* remaining 70% split across 3 meal columns */
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 10px;
+    }
+}

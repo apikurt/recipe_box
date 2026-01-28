@@ -67,3 +67,39 @@ function removeFromShoppingList(ingredient) {
   localStorage.setItem("shoppingList", JSON.stringify(shoppingList));
   alert(`${ingredient} removed from shopping list.`);
 }
+
+function getPlannerMeals() {
+  const plannerMeals = localStorage.getItem("plannerMeals");
+  return plannerMeals ? JSON.parse(plannerMeals) : {};
+}
+
+function savePlannerMeal(day, mealType, recipe) {
+  const plannerMeals = getPlannerMeals();
+  if (!plannerMeals[day]) {
+    plannerMeals[day] = {};
+  }
+  plannerMeals[day][mealType] = recipe;
+  localStorage.setItem("plannerMeals", JSON.stringify(plannerMeals));
+  alert(`${mealType} for ${day} saved.`);
+}
+
+function removePlannerMeal(day, mealType) {
+  const plannerMeals = getPlannerMeals();
+  if (plannerMeals[day] && plannerMeals[day][mealType]) {
+    delete plannerMeals[day][mealType];
+    localStorage.setItem("plannerMeals", JSON.stringify(plannerMeals));
+    alert(`${mealType} for ${day} removed.`);
+  }
+}
+
+function isRecipePlanned(recipeId) {
+  const plannerMeals = getPlannerMeals();
+  for (const day in plannerMeals) {
+    for (const mealType in plannerMeals[day]) {
+      if (plannerMeals[day][mealType].idMeal === recipeId) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
