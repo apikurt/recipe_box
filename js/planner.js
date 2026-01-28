@@ -37,9 +37,9 @@ days.forEach((day, dayIndex) => {
   meals.forEach((mealType) => {
     const td = document.createElement("td");
     td.classList.add("planner-cell");
-    td.setAttribute("data-meal-type", mealType.toLowerCase());
+    td.setAttribute("data-meal-type", mealType);
     td.setAttribute("data-day-index", dayIndex);
-    const meal = plannerMeals[day] ? plannerMeals[day][mealType.toLowerCase()] : null;
+    const meal = plannerMeals[day] ? plannerMeals[day][mealType] : null;
     if (meal) {
       td.innerHTML = `
         <div class="meal-info">

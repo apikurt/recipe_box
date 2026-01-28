@@ -52,7 +52,6 @@ if (savedRecipes.length === 0) {
   addToPlannerButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const recipeId = button.getAttribute("data-recipe-id");
-      const recipe = savedRecipes.find((r) => r.idMeal === recipeId);
       dialogForm.insertAdjacentHTML(
         "afterbegin",
         `
@@ -70,6 +69,8 @@ dialogForm.addEventListener("submit", (e) => {
   const mealType = dialogForm.elements["meal-type"].value;
   const recipeId = dialogForm.elements["recipe-id"].value;
   const recipe = savedRecipes.find((r) => r.idMeal === recipeId);
+  dialogForm.querySelector(".hidden-recipe-id").remove();
+  dialogForm.reset();
   savePlannerMeal(day, mealType, recipe);
   dialog.close();
   const addToPlannerButton = document.querySelector(
