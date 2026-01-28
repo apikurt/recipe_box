@@ -103,3 +103,8 @@ function isRecipePlanned(recipeId) {
   }
   return false;
 }
+
+function clearPlannerMeals() {
+  localStorage.removeItem("plannerMeals");
+  alert("All planner meals cleared.");
+}
