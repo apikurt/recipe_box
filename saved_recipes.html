@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/saved_recipes.css" />
     <link rel="stylesheet" href="css/recipe_cards.css" />
-    <link rel="stylesheet" href="css/dialog.css">
+    <link rel="stylesheet" href="css/dialog.css" />
     <script src="js/script.js" defer></script>
     <script src="js/saved_recipes.js" defer></script>
     <script src="js/dialog.js" defer></script>
@@ -32,7 +32,10 @@
     </header>
 
     <main>
-      <h1 id="saved-recipes-title">Saved Recipes</h1>
+      <section class="page-header">
+        <h1 id="saved-recipes-title">Saved Recipes</h1>
+        <input type="text" name="filter" id="filter-recipes" placeholder="Filter recipes..." />
+      </section>
       <section id="saved-recipes-container">
         <!-- Saved recipes will be dynamically inserted here -->
       </section>

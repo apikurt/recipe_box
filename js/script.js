@@ -88,7 +88,6 @@ function removePlannerMeal(day, mealType) {
   if (plannerMeals[day] && plannerMeals[day][mealType]) {
     delete plannerMeals[day][mealType];
     localStorage.setItem("plannerMeals", JSON.stringify(plannerMeals));
-    alert(`${mealType} for ${day} removed.`);
   }
 }
 
@@ -107,4 +106,24 @@ function isRecipePlanned(recipeId) {
 function clearPlannerMeals() {
   localStorage.removeItem("plannerMeals");
   alert("All planner meals cleared.");
+}
+
+function getPlannedMealCount(day = null, mealType = null) {
+  const plannerMeals = getPlannerMeals();
+  if (day) {
+    return plannerMeals[day] ? Object.keys(plannerMeals[day]).length : 0;
+  } else if (mealType) {
+    let count = 0;
+    for (const d in plannerMeals) {
+      if (plannerMeals[d][mealType]) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  // By default, return total meal count
+  return Object.values(getPlannerMeals()).reduce((count, dayMeals) => {
+    return count + Object.keys(dayMeals).length;
+  }, 0);
 }

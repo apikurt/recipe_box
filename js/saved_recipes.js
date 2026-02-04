@@ -2,6 +2,8 @@ const savedRecipesContainer = document.querySelector(
   "#saved-recipes-container",
 );
 
+const filterInput = document.querySelector("#filter-recipes");
+
 const savedRecipesTitle = document.querySelector("#saved-recipes-title");
 const savedRecipes = getSavedRecipes();
 
@@ -42,3 +44,27 @@ if (savedRecipes.length === 0) {
     });
   });
 }
+
+filterInput.addEventListener("input", () => {
+  const filterValue = filterInput.value.toLowerCase().trim();
+  const recipeCards = savedRecipesContainer.querySelectorAll(".recipe-card");
+
+  if (filterValue === "") {
+    recipeCards.forEach((card) => {
+      card.style.display = "";
+    });
+    savedRecipesTitle.textContent = `Saved Recipes (${getSavedRecipes().length})`;
+    return;
+  }
+  let visibleCount = 0;
+  recipeCards.forEach((card) => {
+    const title = card.querySelector(".recipe-title").textContent.toLowerCase();
+    if (title.includes(filterValue)) {
+      card.style.display = "";
+      visibleCount++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+  savedRecipesTitle.textContent = `Saved Recipes (${visibleCount}/${getSavedRecipes().length})`;
+});
