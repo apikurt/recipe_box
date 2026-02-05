@@ -1,13 +1,16 @@
 const searchForm = document.querySelector("#browse-recipes-form");
 const errorMessage = document.querySelector("#error-message");
 const cardsContainer = document.querySelector("#card-container");
+const loader = document.querySelector(".loader");
 
 const searchQuery =
   new URLSearchParams(window.location.search).get("search") || "";
 if (searchQuery) {
   document.title = `Search results for "${searchQuery}" - Recipe Box`;
   searchForm.search.value = searchQuery;
+  loader.classList.remove("d-none");
   searchRecipes(searchQuery).then((recipes) => {
+    loader.classList.add("d-none");
     displayRecipes(recipes);
   });
 }
@@ -30,15 +33,21 @@ function searchRecipes(query) {
   return fetch(baseUrl + encodeURIComponent(query))
     .then((response) => {
       if (!response.ok) {
-        errorMessage.textContent =
-          "Failed to fetch recipes. Please try again later.";
-        errorMessage.classList.remove("v-hidden");
-        throw new Error("Network response was not ok");
+        throw new Error(
+          `API request failed with status ${response.status} ${response.statusText}`,
+        );
       }
       return response.json();
     })
     .then((data) => {
       return data.meals || [];
+    })
+    .catch((error) => {
+      console.error("Error fetching recipes:", error);
+      errorMessage.textContent =
+        "Failed to fetch recipes. Please try again later.";
+      errorMessage.classList.remove("v-hidden");
+      return [];
     });
 }
 

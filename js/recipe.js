@@ -1,19 +1,36 @@
 const recipeId = new URLSearchParams(window.location.search).get("id");
 const recipeContainer = document.querySelector("#recipe-details");
+const loader = document.querySelector(".loader");
+const errorMessage = document.querySelector("#error-message");
+errorMessage.classList.add("d-none");
 
 if (recipeId) {
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `API request failed with status ${response.status} ${response.statusText}`,
+        );
+      }
+      return response.json();
+    })
     .then((data) => {
       const recipe = data.meals[0];
       document.title = `${recipe.strMeal} - Recipe Box`;
+      loader.classList.add("d-none");
       displayRecipe(recipe);
     })
     .catch((error) => {
       console.error("Error fetching recipe:", error);
+      errorMessage.textContent =
+        "Failed to fetch recipe details. Please try again later.";
+      errorMessage.classList.remove("d-none");
     });
 } else {
   console.error("No recipe ID provided in URL.");
+  errorMessage.textContent =
+    "No recipe ID provided. Please go back and select a recipe.";
+  errorMessage.classList.remove("d-none");
 }
 
 function displayRecipe(recipe) {

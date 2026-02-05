@@ -186,6 +186,24 @@ div.error {
   visibility: hidden;
 }
 
+.d-none {
+  display: none;
+}
+
 .float-right {
   float: right;
+}
+
+.loader {
+  border: 10px solid #bdbcbc; /* Light grey */
+  border-top: 10px solid var(--primary-color); /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1.3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
