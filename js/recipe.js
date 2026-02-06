@@ -17,7 +17,7 @@ if (recipeId) {
     .then((data) => {
       const recipe = data.meals[0];
       document.title = `${recipe.strMeal} - Recipe Box`;
-      loader.classList.add("d-none");
+
       displayRecipe(recipe);
     })
     .catch((error) => {
@@ -25,6 +25,9 @@ if (recipeId) {
       errorMessage.textContent =
         "Failed to fetch recipe details. Please try again later.";
       errorMessage.classList.remove("d-none");
+    })
+    .finally(() => {
+      loader.classList.add("d-none");
     });
 } else {
   console.error("No recipe ID provided in URL.");

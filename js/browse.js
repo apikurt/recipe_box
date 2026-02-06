@@ -10,7 +10,6 @@ if (searchQuery) {
   searchForm.search.value = searchQuery;
   loader.classList.remove("d-none");
   searchRecipes(searchQuery).then((recipes) => {
-    loader.classList.add("d-none");
     displayRecipes(recipes);
   });
 }
@@ -48,6 +47,9 @@ function searchRecipes(query) {
         "Failed to fetch recipes. Please try again later.";
       errorMessage.classList.remove("v-hidden");
       return [];
+    })
+    .finally(() => {
+      loader.classList.add("d-none");
     });
 }
 
