@@ -196,8 +196,8 @@ div.error {
 }
 
 .loader {
-  border: 10px solid #bdbcbc; /* Light grey */
-  border-top: 10px solid var(--primary-color); /* Blue */
+  border: 10px solid #bdbcbc;
+  border-top: 10px solid var(--primary-color);
   border-radius: 50%;
   width: 40px;
   height: 40px;
